@@ -1,5 +1,6 @@
 # Banking Assignment
 CSS 1035 Banking Assignment
+Group 4: Sabrina Khan, Dilpreet Kaur, Jasmilan Singh, Christopher Cruz, Tasha Gosine
 
 **Purpose:** Java program that creates a Checking and Savings Account (with Inheritance).
 

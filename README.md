@@ -1,8 +1,10 @@
 # Banking Assignment
 CSS 1035 Banking Assignment
 
-**Purpose:** Java program that creates a Checking and Savings Account (from Inheritance). Has basic functionality such as depositing and withdrawing money.
+**Purpose:** Java program that creates a Checking and Savings Account (with Inheritance).
 
 Main Functions:
-- Deposit
-- Withdrawl
+- Depositing money from Checkings and Savings Account
+- Withdrawl money from Checkings and Savings Account
+- Charging a fee
+  - If balance first deposited in Savings Account is less than $2,000, there's an automatic $50 fee charged

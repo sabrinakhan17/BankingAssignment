@@ -1,7 +1,10 @@
-
+//Group 4
+//Sabrina Khan, Dilpreet Kaur, Jasmilan Singh, Christopher Cruz, Tasha Gosine
 public class TestBanking {
 	
 	public static void main(String[] args) {
+		
+		System.out.println("Welcome to ________ Bank!\n");
 		
 		CheckingAccount c1 = new CheckingAccount();
 		c1.setId(1);
@@ -23,7 +26,7 @@ public class TestBanking {
 		SavingsAccount s1 = new SavingsAccount();
 		s1.setId(1);
 		s1.setName("Savings 1");
-		s1.setAmount(2000);
+		s1.setAmount(1000);
 		System.out.println("\nSavings Account:\n"+"Account Number\t"+"Account Name\t"+"Amount");
 		s1.printSavingsAccountDetails();
 		
@@ -38,3 +41,8 @@ public class TestBanking {
 
 	}
 }
+/*
+ * Coding: Done
+ * Bank Name: WIP
+ * Report: Need to Start
+ */

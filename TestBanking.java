@@ -9,7 +9,7 @@ public class TestBanking {
 		CheckingAccount c1 = new CheckingAccount();
 		c1.setId(1);
 		c1.setName("Checking 1");
-		c1.setAmount(1000);
+		c1.setcheckingBalance(1000);
 		
 		System.out.println("Checking Account:\n"+"Account Number\t"+"Account Name\t"+"Amount");
 		c1.printCheckingAccountDetails();
@@ -26,7 +26,7 @@ public class TestBanking {
 		SavingsAccount s1 = new SavingsAccount();
 		s1.setId(1);
 		s1.setName("Savings 1");
-		s1.setAmount(1000);
+		s1.setsavingBalance(1000);
 		System.out.println("\nSavings Account:\n"+"Account Number\t"+"Account Name\t"+"Amount");
 		s1.printSavingsAccountDetails();
 		

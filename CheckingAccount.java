@@ -1,44 +1,44 @@
 public class CheckingAccount extends Account {
-	private int amount;
+	private int checkingBalance;
 	
 	public CheckingAccount() {
 		
 	}
 	
-	public CheckingAccount(int amount) {
-		this.amount = amount;
+	public CheckingAccount(int checkingBalance) {
+		this.checkingBalance = checkingBalance;
 	}
 	
-	public CheckingAccount(int id, String name, int amount) {
+	public CheckingAccount(int id, String name, int checkingBalance) {
 		setId(id);
 		setName(name);
-		this.amount = amount;
+		this.checkingBalance = checkingBalance;
 	}
 
-	public int getAmount() {
-		return amount;
+	public int getcheckingBalance() {
+		return checkingBalance;
 	}
 
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setcheckingBalance(int checkingBalance) {
+		this.checkingBalance = checkingBalance;
 	}
 	
 	public void depositChecking(int d) {
-		int newAmount = amount+d;
-		setAmount(newAmount);
+		int newAmount = checkingBalance+d;
+		setcheckingBalance(newAmount);
 	}
 	
 	public void withdrawlChecking(int w) {
-		if(w<amount) {
-			int newAmount = amount-w;
-			setAmount(newAmount);
+		if(w<checkingBalance) {
+			int newAmount = checkingBalance-w;
+			setcheckingBalance(newAmount);
 		}else {
 			System.out.println("ERROR: Withdrawl Amount is Over Account Balance");
 		}
 	}
 	
 	public void printCheckingAccountDetails() {
-		System.out.println("\t"+getId()+"\t"+getName()+"\t"+getAmount());
+		System.out.println("\t"+getId()+"\t"+getName()+"\t"+getcheckingBalance());
 	}
 
 }

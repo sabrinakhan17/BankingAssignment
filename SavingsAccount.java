@@ -1,6 +1,6 @@
 public class SavingsAccount extends Account{
 	private int amount;
-	private int fee;
+	private int fee = 50;
 	
 	public SavingsAccount() {
 		
@@ -11,11 +11,10 @@ public class SavingsAccount extends Account{
 		this.fee = fee;
 	}
 	
-	public SavingsAccount(int id, String name, int amount, int fee) {
+	public SavingsAccount(int id, String name, int amount) {
 		setId(id);
 		setName(name);
 		this.amount = amount;
-		this.fee = fee;
 	}
 
 	public int getAmount() {
@@ -24,6 +23,7 @@ public class SavingsAccount extends Account{
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+		fee();
 	}
 
 	public int getFee() {
@@ -31,7 +31,7 @@ public class SavingsAccount extends Account{
 	}
 
 	public void setFee(int fee) {
-		this.fee = fee;
+		this.fee = 50;
 	}
 	
 	public void depositSavings(int d) {
@@ -45,6 +45,14 @@ public class SavingsAccount extends Account{
 			setAmount(newAmount);
 		}else {
 			System.out.println("ERROR: Withdrawl Amount is Over Account Balance");
+		}
+	}
+	
+	public void fee() {
+		if(amount < 2000) {
+			this.amount = amount - fee;
+		}else {
+			this.amount = amount;
 		}
 	}
 	

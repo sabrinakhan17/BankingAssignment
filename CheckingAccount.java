@@ -15,7 +15,6 @@ public class CheckingAccount extends Account {
 		this.amount = amount;
 	}
 
-
 	public int getAmount() {
 		return amount;
 	}

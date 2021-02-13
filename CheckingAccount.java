@@ -33,7 +33,7 @@ public class CheckingAccount extends Account {
 			int newAmount = checkingBalance-w;
 			setcheckingBalance(newAmount);
 		}else {
-			System.out.println("ERROR: Withdrawl Amount is Over Account Balance");
+			System.out.println("ERROR: Insufficient Funds Cannot Withdraw $"+w);
 		}
 	}
 	

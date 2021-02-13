@@ -23,7 +23,6 @@ public class SavingsAccount extends Account{
 
 	public void setsavingBalance(int savingBalance) {
 		this.savingBalance = savingBalance;
-		fee();
 	}
 
 	public int getFee() {
@@ -34,9 +33,12 @@ public class SavingsAccount extends Account{
 		this.fee = 50;
 	}
 	
-	public void depositSavings(int d) {
-		int newAmount = savingBalance+d;
-		setsavingBalance(newAmount);
+	public void fee() {
+		if(savingBalance < 2000) {
+			this.savingBalance = savingBalance - fee;
+		}else {
+			this.savingBalance = savingBalance;
+		}
 	}
 	
 	public void withdrawlSavings(int w) {
@@ -44,16 +46,13 @@ public class SavingsAccount extends Account{
 			int newAmount = savingBalance-w;
 			setsavingBalance(newAmount);
 		}else {
-			System.out.println("ERROR: Withdrawl Amount is Over Account Balance");
+			System.out.println("ERROR: Insufficient Funds Cannot Withdraw $"+w);
 		}
 	}
 	
-	public void fee() {
-		if(savingBalance < 2000) {
-			this.savingBalance = savingBalance - fee;
-		}else {
-			this.savingBalance = savingBalance;
-		}
+	public void depositSavings(int d) {
+		int newAmount = getsavingBalance()+d;
+		setsavingBalance(newAmount);
 	}
 	
 	public void printSavingsAccountDetails() {

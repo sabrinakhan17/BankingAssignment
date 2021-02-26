@@ -24,18 +24,15 @@ public class Checking_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank {
 		setcheckingBalance(newAmount);
 	}
 	
-	public boolean withdrawlChecking(int withdrawAmount) {
-		if(withdrawAmount < checkingBalance) 
-		{
+	public void withdrawlChecking(int withdrawAmount) throws Exception {
+		
+		if(withdrawAmount < checkingBalance) {
 			int newAmount = checkingBalance - withdrawAmount;
 			setcheckingBalance(newAmount);
-			return true;
+		}else {
+			throw new Exception("Checking Withdrawl Error");
 		}
-		else 
-		{
-			System.out.println("ERROR: Insufficient Funds Cannot Withdraw $" + withdrawAmount);
-			return false;
-		}
+	
 	}
 	
 	public void printCheckingAccountDetails() {

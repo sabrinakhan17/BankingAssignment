@@ -17,7 +17,7 @@ class Checking_S2021_SchmeelkBank_Test {
 		c1.depositChecking(50);
 		assertEquals(1050, c1.getcheckingBalance());
 	}
-	
+	/*
 	@Test
 	public void withdrawalCheckings() {
 		c1.withdrawlChecking(50);
@@ -27,6 +27,6 @@ class Checking_S2021_SchmeelkBank_Test {
 	@Test
 	public void withdrawalErrorCheckings() {
 		assertEquals(false, c1.withdrawlChecking(2000));
-	}
+	}*/
 	
 }

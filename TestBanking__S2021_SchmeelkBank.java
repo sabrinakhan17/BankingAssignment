@@ -29,11 +29,23 @@ public class TestBanking__S2021_SchmeelkBank {
 		c1.printCheckingAccountDetails();
 		
 		System.out.println("\nTest 3: Withdrawal $50");
-		c1.withdrawlChecking(50);
+		
+		try {
+			c1.withdrawlChecking(50);
+		} catch (Exception e) {
+			System.out.println("ERROR: Insufficient Balance");
+		}
+		
 		c1.printCheckingAccountDetails();
 		
 		System.out.println("\nTest 4: Print Error Message if Withdrawal Balance is Less Than Account Balance");
-		c1.withdrawlChecking(2000);
+		
+		try {
+			c1.withdrawlChecking(2000);
+		} catch (Exception e) {
+			System.out.println("ERROR: Insufficient Balance");
+		}
+		
 		c1.printCheckingAccountDetails();
 		System.out.println();
 	
@@ -44,7 +56,12 @@ public class TestBanking__S2021_SchmeelkBank {
 		Saving_S2021_SchmeelkBank s1 = new Saving_S2021_SchmeelkBank(1, "Savings 1", 1000);
 	
 		System.out.println("Test 5: Charge Fee if Balance is Less Than $2000, amount deposited is $" + s1.getsavingBalance());
-		s1.fee();
+		try {
+			s1.fee();
+		} catch (Exception e1) {
+			System.out.println("First Time Balance Error: $50 Fee Charged");
+		}
+		
 		System.out.println("\nSavings Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
 		s1.printSavingsAccountDetails();
 		
@@ -53,11 +70,19 @@ public class TestBanking__S2021_SchmeelkBank {
 		s1.printSavingsAccountDetails();
 		
 		System.out.println("\nTest 4: Print Error Message if Withdrawal Balance is Less Than Account Balance");
-		s1.withdrawlSavings(5000);
+		try {
+			s1.withdrawlSavings(5000);
+		} catch (Exception e) {
+			System.out.println("ERROR: Insufficient Balance");
+		}
 		s1.printSavingsAccountDetails();
 		
 		System.out.println("\nTest 3: Withdrawal $50");
-		s1.withdrawlSavings(50);
+		try {
+			s1.withdrawlSavings(50);
+		} catch (Exception e) {
+			System.out.println("ERROR: Insufficient Balance");
+		}
 		s1.printSavingsAccountDetails();
 		System.out.println();
 
@@ -68,6 +93,11 @@ public class TestBanking__S2021_SchmeelkBank {
 		Saving_S2021_SchmeelkBank s2 = new Saving_S2021_SchmeelkBank(2, "Savings 2", 3000);
 		
 		System.out.println("Test 5: Charge Fee if Balance is Less Than $2000, amount deposited is $" + s2.getsavingBalance());
+		try {
+			s2.fee();
+		} catch (Exception e1) {
+			System.out.println("First Time Balance Error: $50 Fee Charged");
+		}
 		System.out.println("\nSavings Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
 		s2.printSavingsAccountDetails();
 		
@@ -76,11 +106,19 @@ public class TestBanking__S2021_SchmeelkBank {
 		s2.printSavingsAccountDetails();
 		
 		System.out.println("\nTest 3: Withdrawal $500");
-		s2.withdrawlSavings(500);
+		try {
+			s2.withdrawlSavings(500);
+		} catch (Exception e) {
+			System.out.println("ERROR: Insufficient Balance");
+		}
 		s2.printSavingsAccountDetails();
 		
 		System.out.println("\nTest 4: Print Error Message if Withdrawal Balance is Less Than Account Balance");
-		s2.withdrawlSavings(10000);
+		try {
+			s2.withdrawlSavings(10000);
+		} catch (Exception e) {
+			System.out.println("ERROR: Insufficient Balance");
+		}
 		s2.printSavingsAccountDetails();
 	}
 }

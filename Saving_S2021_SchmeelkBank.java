@@ -28,28 +28,22 @@ public class Saving_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank{
 		this.fee = 50;
 	}
 	
-	public int fee() {
-		if(savingBalance < 2000) 
-		{
-			return this.savingBalance = savingBalance - fee;
-		}
-		else 
-		{
-			return this.savingBalance = savingBalance;
+	public void fee() throws Exception {
+		if(savingBalance < 2000) {
+			this.savingBalance = savingBalance - fee;
+			throw new Exception("Savings Fee Error");
+		} else {
+			this.savingBalance = savingBalance;
 		}
 	}
 	
-	public boolean withdrawlSavings(int withdrawAmount) {
-		if( withdrawAmount < savingBalance) 
-		{
+	public void withdrawlSavings(int withdrawAmount) throws Exception {
+	
+		if(withdrawAmount < savingBalance) {
 			int newAmount = savingBalance - withdrawAmount;
 			setsavingBalance(newAmount);
-			return true;
-		}
-		else 
-		{
-			System.out.println("ERROR: Insufficient Funds Cannot Withdraw $" + withdrawAmount);
-			return false;
+		}else {
+			throw new Exception("Savings Withdrawl Error");
 		}
 	}
 	

@@ -32,8 +32,6 @@ public class Saving_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank{
 		if(savingBalance < 2000) {
 			this.savingBalance = savingBalance - fee;
 			throw new Exception("Savings Fee Error");
-		} else {
-			this.savingBalance = savingBalance;
 		}
 	}
 	

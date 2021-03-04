@@ -1,16 +1,20 @@
-//Group 4 - Spring 2021
-//Sabrina Khan, Dilpreet Kaur, Jasmilan Singh, Christopher Cruz, Tasha Gosine
-
-/* 
- * Test 1: Create account
- * Test 2: Deposit
- * Test 3: Withdrawal
- * Test 4: Withdrawal Error
- * Test 5: Charge Fee
+/**
+ * Group 4 - Spring 2021
+ * @author Sabrina Khan, Dilpreet Kaur, Jasmilan Singh, Christopher Cruz, Tasha Gosine
+ *
  */
-
 public class TestBanking__S2021_SchmeelkBank {
-
+	/**
+	 * This main method was created to test the banking application.
+	 * The program creates 1 checking account and 2 savings accounts
+	 * and tests out the following tests:
+	 * Test 1: Create account
+	 * Test 2: Deposit
+	 * Test 3: Withdrawal
+	 * Test 4: Withdrawal Error
+	 * Test 5: Charge Fee
+	 * @param args specifies main method
+	 */
 	public static void main(String[] args) {
 		
 		//Intro To Bank Application

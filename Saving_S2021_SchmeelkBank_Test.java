@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,22 +20,43 @@ class Saving_S2021_SchmeelkBank_Test {
 		s1.depositSavings(1000);
 		assertEquals(4000, s1.getsavingBalance());
 	}
-	/*
+	
 	@Test
 	public void withdrawalSavings() {
-		s1.withdrawlSavings(500);
-		assertEquals(2500, s1.getsavingBalance());
+		try {
+			s1.withdrawlSavings(500);
+		} catch (Exception e) {
+			System.out.println("ERROR: Insufficient Balance");
+		}
+		assertEquals(2500, s1.getsavingBalance()); //initial amount: 3000 - 500 = 2500
 	}
 	
 	@Test
 	public void withdrawalErrorSavings() {
-		assertEquals(false, s1.withdrawlSavings(10000));
+		try {
+			s1.withdrawlSavings(10000);
+		} catch (Exception e) {
+			System.out.println("ERROR: Insufficient Balance");
+		}
+		assertEquals(3000, s1.getsavingBalance()); //initial amount: 3000 - 10000 = ERROR
+		Assert.assertNotEquals(13000, s1.getsavingBalance());
 	}
 	
 	@Test
 	public void chargeFeeSavings() {
-		assertEquals(3000, s1.fee());
-		assertEquals(950, s2.fee());
-	}*/
+		try {
+			s1.fee();
+		} catch (Exception e) {
+			System.out.println("First Time Balance Error: $50 Fee Charged");
+		}
+		assertEquals(3000, s1.getsavingBalance());
+		
+		try {
+			s2.fee();
+		} catch (Exception e) {
+			System.out.println("First Time Balance Error: $50 Fee Charged");
+		}
+		assertEquals(950, s2.getsavingBalance());
+	}
 
 }

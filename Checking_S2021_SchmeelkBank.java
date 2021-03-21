@@ -63,7 +63,7 @@ public class Checking_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank {
 	 * Prints out the Checking Account ID, Checking Account Name and Account Checking Balance
 	 */
 	public void printCheckingAccountDetails() {
-		System.out.println("\nChecking Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
-		System.out.println("     " + getId() + "\t" + getName() + "\t$" + getcheckingBalance());
+		System.out.println("\nChecking Account:\n" + "Account Number\t" + "Account Name\t\t" + "Amount");
+		System.out.println("   " + getId() + "\t" + getName() + "\t$" + getcheckingBalance());
 	}
 }

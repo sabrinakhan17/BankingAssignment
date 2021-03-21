@@ -87,6 +87,7 @@ public class Saving_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank{
 	 * Prints out the Savings Account ID, Savings Account Name and Account Savings Balance
 	 */
 	public void printSavingsAccountDetails() {
-		System.out.println("\t" + getId() + "\t" + getName() + "\t" + getsavingBalance());
+		System.out.println("\nSavings Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
+		System.out.println("    " + getId() + "\t" + getName() + "\t" + getsavingBalance());
 	}	
 }

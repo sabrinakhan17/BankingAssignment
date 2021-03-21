@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.Base64;
+import java.util.InputMismatchException;
 /**
  * Group 4 - Spring 2021
  * @author Sabrina Khan, Dilpreet Kaur, Jasmilan Singh, Christopher Cruz, Tasha Gosine
@@ -5,27 +8,60 @@
  */
 public class TestBanking__S2021_SchmeelkBank {
 	/**
-	 * This main method was created to test the banking application.
-	 * The program creates 1 checking account and 2 savings accounts
-	 * and tests out the following tests:
-	 * Test 1: Create account
-	 * Test 2: Deposit
-	 * Test 3: Withdrawal
-	 * Test 4: Withdrawal Error
-	 * Test 5: Charge Fee
-	 * @param args specifies main method
+	 * The purpose of this method is to take an inputed string and 
+	 * output the encoded string.
+	 * This method will be used when the user inputs an account name.
+	 * @param x takes String x
+	 * @return the method returns the encoded String
 	 */
-	public static void main(String[] args) {
+	public static String outputEncoding(String x) {
+		String encodedString = Base64.getEncoder().encodeToString(x.getBytes());
+		return encodedString;
+	}
+	/**
+	 * The purpose of this method is to allow users to choose an account number,
+	 * account name and balance for a Checking Account.
+	 * The method validates that the account number and balance is inputed correctly.
+	 * The method uses the outputEncoding method on account name.
+	 * Finally, it prints out deposit and withdrawal functions.
+	 * @param kb takes in the Scanner declared in our main method class
+	 */
+	public static void checkingAccountInputValidation(Scanner kb) {
 		
-		//Intro To Bank Application
-		System.out.println("Welcome to Schmeelk's Savings Bank!\n");
-		
-		//Checking Account
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("Test 1: Create Checking Account");
-		Checking_S2021_SchmeelkBank c1 = new Checking_S2021_SchmeelkBank(1, "Checking 1", 1000);
 		
-		System.out.println("Checking Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
+		boolean inputValid = false;
+		int cANum = 0;
+		while(!inputValid) {
+			System.out.println("Enter a Checking Account Number:");
+			try {
+				cANum = kb.nextInt();
+				inputValid = true;
+			}catch(InputMismatchException e) {
+				System.out.println("Not a valid account number! Try again!");
+				kb.next();
+			}
+		}
+		
+		kb.nextLine();
+		System.out.println("Enter a Checking Account Name:");
+		String cAName = outputEncoding(kb.nextLine());
+		
+		boolean inputValid2 = false;
+		int cAAmount = 0;
+		while(!inputValid2) {
+			System.out.println("Enter Initial Amount:");
+			try {
+				cAAmount = kb.nextInt();
+				inputValid2 = true;
+			}catch(InputMismatchException e) {
+				System.out.println("Not a valid amount! Try again!");
+				kb.next();
+			}
+		}
+		
+		Checking_S2021_SchmeelkBank c1 = new Checking_S2021_SchmeelkBank(cANum, cAName, cAAmount);
 		c1.printCheckingAccountDetails();
 		
 		System.out.println("\nTest 2: Depositing $50");
@@ -43,30 +79,70 @@ public class TestBanking__S2021_SchmeelkBank {
 		c1.printCheckingAccountDetails();
 		
 		System.out.println("\nTest 4: Print Error Message if Withdrawal Balance is Less Than Account Balance");
-		
+		int errorCheckingsWithdrawal = c1.getcheckingBalance()+500;
+		System.out.println("Trying to withdraw "+errorCheckingsWithdrawal);
 		try {
-			c1.withdrawlChecking(2000);
+			c1.withdrawlChecking(errorCheckingsWithdrawal);
 		} catch (Exception e) {
 			System.out.println("ERROR: Insufficient Balance");
 		}
 		
 		c1.printCheckingAccountDetails();
 		System.out.println();
-	
 		
-		//Savings Account 1 - below $2000(min amount for savings account)
+	}
+	/**
+	 * The purpose of this method is to allow users to choose an account number,
+	 * account name and balance for a Savings Account.
+	 * The method validates that the account number and balance is inputed correctly.
+	 * The method uses the outputEncoding method on account name.
+	 * Finally, it prints out deposit and withdrawal functions.
+	 * @param kb takes in the Scanner declared in our main method class
+	 */
+	public static void savingsAccountInputValidation(Scanner kb) {
+		
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("Test 1: Create Savings Account");
-		Saving_S2021_SchmeelkBank s1 = new Saving_S2021_SchmeelkBank(1, "Savings 1", 1000);
-	
+		
+		boolean inputValid = false;
+		int sANum = 0;
+		while(!inputValid) {
+			System.out.println("Enter a Savings Account Number:");
+			try {
+				sANum = kb.nextInt();
+				inputValid = true;
+			}catch(InputMismatchException e) {
+				System.out.println("Not a valid account number! Try again!");
+				kb.next();
+			}
+		}
+		
+		kb.nextLine();
+		System.out.println("Enter a Savings Account Name:");
+		String sAName = outputEncoding(kb.nextLine());
+		
+		boolean inputValid2 = false;
+		int sAAmount = 0;
+		while(!inputValid2) {
+			System.out.println("Enter Initial Amount:");
+			try {
+				sAAmount = kb.nextInt();
+				inputValid2 = true;
+			}catch(InputMismatchException e) {
+				System.out.println("Not a valid amount! Try again!");
+				kb.next();
+			}
+		}
+		
+		Saving_S2021_SchmeelkBank s1 = new Saving_S2021_SchmeelkBank(sANum, sAName, sAAmount);
+		s1.printSavingsAccountDetails();
+		
 		System.out.println("Test 5: Charge Fee if Balance is Less Than $2000, amount deposited is $" + s1.getsavingBalance());
 		try {
 			s1.fee();
 		} catch (Exception e1) {
 			System.out.println("First Time Balance Error: $50 Fee Charged");
 		}
-		
-		System.out.println("\nSavings Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
 		s1.printSavingsAccountDetails();
 		
 		System.out.println("\nTest 2: Depositing $1000");
@@ -74,8 +150,10 @@ public class TestBanking__S2021_SchmeelkBank {
 		s1.printSavingsAccountDetails();
 		
 		System.out.println("\nTest 4: Print Error Message if Withdrawal Balance is Less Than Account Balance");
+		int errorSavingsWithdrawal = s1.getsavingBalance()+500;
+		System.out.println("Trying to withdraw "+errorSavingsWithdrawal);
 		try {
-			s1.withdrawlSavings(5000);
+			s1.withdrawlSavings(errorSavingsWithdrawal);
 		} catch (Exception e) {
 			System.out.println("ERROR: Insufficient Balance");
 		}
@@ -89,40 +167,27 @@ public class TestBanking__S2021_SchmeelkBank {
 		}
 		s1.printSavingsAccountDetails();
 		System.out.println();
-
+	}
+	/**
+	 * This main method was created to test the banking application.
+	 * The program calls our checking account method once and 
+	 * savings account methods twice and then tests out the following tests:
+	 * 		Test 1: Create account
+	 * 		Test 2: Deposit
+	 * 		Test 3: Withdrawal
+	 * 		Test 4: Withdrawal Error
+	 * 		Test 5: Charge Fee
+	 * @param args Main Method Class
+	 */
+	public static void main(String[] args) {
 		
-		//Savings Account 2 - with over $2000(min amount for savings account)
-		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("Test 1: Create Savings Account");
-		Saving_S2021_SchmeelkBank s2 = new Saving_S2021_SchmeelkBank(2, "Savings 2", 3000);
+		Scanner kb = new Scanner(System.in);
 		
-		System.out.println("Test 5: Charge Fee if Balance is Less Than $2000, amount deposited is $" + s2.getsavingBalance());
-		try {
-			s2.fee();
-		} catch (Exception e1) {
-			System.out.println("First Time Balance Error: $50 Fee Charged");
-		}
-		System.out.println("\nSavings Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
-		s2.printSavingsAccountDetails();
+		checkingAccountInputValidation(kb);
+		savingsAccountInputValidation(kb); //deposit less than $2000
+		savingsAccountInputValidation(kb); //deposit more than $2000
 		
-		System.out.println("\nTest 2: Depositing $1000");
-		s2.depositSavings(1000);
-		s2.printSavingsAccountDetails();
+		kb.close();
 		
-		System.out.println("\nTest 3: Withdrawal $500");
-		try {
-			s2.withdrawlSavings(500);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
-		}
-		s2.printSavingsAccountDetails();
-		
-		System.out.println("\nTest 4: Print Error Message if Withdrawal Balance is Less Than Account Balance");
-		try {
-			s2.withdrawlSavings(10000);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
-		}
-		s2.printSavingsAccountDetails();
 	}
 }

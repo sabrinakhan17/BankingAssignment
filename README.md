@@ -12,5 +12,7 @@ Main Functions:
   - When user inputs an Account Name, its encoded to keep the Account Name secure
 - Depositing money from Checkings and Savings Account
 - Withdrawl money from Checkings and Savings Account
+  - Custom Exception: InvalidWithdrawalAmount created
 - Charging a fee
   - If balance first deposited in Savings Account is less than $2,000, there's an automatic $50 fee charged
+  - Custom Exception: SavingFeeError created

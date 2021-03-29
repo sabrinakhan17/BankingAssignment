@@ -52,27 +52,30 @@ public class Saving_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank{
 	/**
 	 * Method that automatically subtracts the balance if initial savings 
 	 * deposit is less than $2000
-	 * @throws Exception this throws exception if the balance is less than $2000
+	 * @throws SavingFeeError exception this throws exception if the 
+	 * balance is less than $2000
 	 */
-	public void fee() throws Exception {
+	public void fee() throws SavingFeeError {
 		if(savingBalance < 2000) {
 			this.savingBalance = savingBalance - fee;
-			throw new Exception("Savings Fee Error");
+			throw new SavingFeeError();
+		}else {
+			System.out.println("$50 Fee was NOT charged");
 		}
 	}
 	/**
 	 * 
 	 * @param withdrawAmount is the amount the user is trying to withdrawal
-	 * @throws Exception his throws error if the withdrawal amount is over 
-	 * the savings account balance
+	 * @throws InvalidWithdrawalAmount exception his throws error if the 
+	 * withdrawal amount is over the savings account balance
 	 */
-	public void withdrawlSavings(int withdrawAmount) throws Exception {
+	public void withdrawlSavings(int withdrawAmount) throws InvalidWithdrawalAmount {
 	
 		if(withdrawAmount < savingBalance) {
 			int newAmount = savingBalance - withdrawAmount;
 			setsavingBalance(newAmount);
 		}else {
-			throw new Exception("Savings Withdrawl Error");
+			throw new InvalidWithdrawalAmount(withdrawAmount);
 		}
 	}
 	/**

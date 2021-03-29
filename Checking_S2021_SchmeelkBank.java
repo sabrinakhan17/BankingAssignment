@@ -46,16 +46,16 @@ public class Checking_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank {
 	 * Method that withdraws amount to checking account, 
 	 * if the withdrawal amount is less than checking account balance, throws Exception
 	 * @param withdrawAmount is the amount the user is trying to withdrawal
-	 * @throws Exception this throws error if the withdrawal amount is over 
-	 * the checking account balance
+	 * @throws InvalidWithdrawalAmount exception this throws error if the 
+	 * withdrawal amount is over the checking account balance
 	 */
-	public void withdrawlChecking(int withdrawAmount) throws Exception {
+	public void withdrawlChecking(int withdrawAmount) throws InvalidWithdrawalAmount {
 		
 		if(withdrawAmount < checkingBalance) {
 			int newAmount = checkingBalance - withdrawAmount;
 			setcheckingBalance(newAmount);
 		}else {
-			throw new Exception("Checking Withdrawl Error");
+			throw new InvalidWithdrawalAmount(withdrawAmount);
 		}
 	
 	}

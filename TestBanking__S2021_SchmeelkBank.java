@@ -23,7 +23,8 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * account name and balance for a Checking Account.
 	 * The method validates that the account number and balance is inputed correctly.
 	 * The method uses the outputEncoding method on account name.
-	 * Finally, it prints out deposit and withdrawal functions.
+	 * Finally, it prints out deposit and withdrawal functions 
+	 * (and uses the custom exceptions).
 	 * @param kb takes in the Scanner declared in our main method class
 	 */
 	public static void checkingAccountInputValidation(Scanner kb) {
@@ -72,8 +73,8 @@ public class TestBanking__S2021_SchmeelkBank {
 		
 		try {
 			c1.withdrawlChecking(50);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
+		} catch (InvalidWithdrawalAmount e) {
+			System.out.println(e);
 		}
 		
 		c1.printCheckingAccountDetails();
@@ -83,8 +84,8 @@ public class TestBanking__S2021_SchmeelkBank {
 		System.out.println("Trying to withdraw "+errorCheckingsWithdrawal);
 		try {
 			c1.withdrawlChecking(errorCheckingsWithdrawal);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
+		} catch (InvalidWithdrawalAmount e) {
+			System.out.println(e);
 		}
 		
 		c1.printCheckingAccountDetails();
@@ -96,7 +97,8 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * account name and balance for a Savings Account.
 	 * The method validates that the account number and balance is inputed correctly.
 	 * The method uses the outputEncoding method on account name.
-	 * Finally, it prints out deposit and withdrawal functions.
+	 * Finally, it prints out deposit and withdrawal functions
+	 * (and uses the custom exceptions).
 	 * @param kb takes in the Scanner declared in our main method class
 	 */
 	public static void savingsAccountInputValidation(Scanner kb) {
@@ -140,8 +142,8 @@ public class TestBanking__S2021_SchmeelkBank {
 		System.out.println("Test 5: Charge Fee if Balance is Less Than $2000, amount deposited is $" + s1.getsavingBalance());
 		try {
 			s1.fee();
-		} catch (Exception e1) {
-			System.out.println("First Time Balance Error: $50 Fee Charged");
+		} catch (SavingFeeError e1) {
+			System.out.println(e1);
 		}
 		s1.printSavingsAccountDetails();
 		
@@ -154,16 +156,16 @@ public class TestBanking__S2021_SchmeelkBank {
 		System.out.println("Trying to withdraw "+errorSavingsWithdrawal);
 		try {
 			s1.withdrawlSavings(errorSavingsWithdrawal);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
+		} catch (InvalidWithdrawalAmount e) {
+			System.out.println(e);
 		}
 		s1.printSavingsAccountDetails();
 		
 		System.out.println("\nTest 3: Withdrawal $50");
 		try {
 			s1.withdrawlSavings(50);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
+		} catch (InvalidWithdrawalAmount e) {
+			System.out.println(e);
 		}
 		s1.printSavingsAccountDetails();
 		System.out.println();

@@ -22,8 +22,8 @@ class Checking_S2021_SchmeelkBank_Test {
 	public void withdrawalCheckings() {
 		try {
 			c1.withdrawlChecking(50);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
+		} catch (InvalidWithdrawalAmount e) {
+			System.out.println(e);
 		}
 		assertEquals(950, c1.getcheckingBalance()); //initial amount 1000 - 50
 	}
@@ -32,10 +32,11 @@ class Checking_S2021_SchmeelkBank_Test {
 	public void withdrawalErrorCheckings() {
 		try {
 			c1.withdrawlChecking(2000);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
+		} catch (InvalidWithdrawalAmount e) {
+			System.out.println(e);
 		}
 		assertEquals(1000, c1.getcheckingBalance()); //initial amount 1000 - 1000 = ERROR
 	}
 	
 }
+

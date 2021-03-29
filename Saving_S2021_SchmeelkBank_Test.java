@@ -25,8 +25,8 @@ class Saving_S2021_SchmeelkBank_Test {
 	public void withdrawalSavings() {
 		try {
 			s1.withdrawlSavings(500);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
+		} catch (InvalidWithdrawalAmount e) {
+			System.out.println(e);
 		}
 		assertEquals(2500, s1.getsavingBalance()); //initial amount: 3000 - 500 = 2500
 	}
@@ -35,8 +35,8 @@ class Saving_S2021_SchmeelkBank_Test {
 	public void withdrawalErrorSavings() {
 		try {
 			s1.withdrawlSavings(10000);
-		} catch (Exception e) {
-			System.out.println("ERROR: Insufficient Balance");
+		} catch (InvalidWithdrawalAmount e) {
+			System.out.println(e);
 		}
 		assertEquals(3000, s1.getsavingBalance()); //initial amount: 3000 - 10000 = ERROR
 		Assert.assertNotEquals(13000, s1.getsavingBalance());
@@ -46,15 +46,15 @@ class Saving_S2021_SchmeelkBank_Test {
 	public void chargeFeeSavings() {
 		try {
 			s1.fee();
-		} catch (Exception e) {
-			System.out.println("First Time Balance Error: $50 Fee Charged");
+		} catch (SavingFeeError e) {
+			System.out.println(e);
 		}
 		assertEquals(3000, s1.getsavingBalance());
 		
 		try {
 			s2.fee();
-		} catch (Exception e) {
-			System.out.println("First Time Balance Error: $50 Fee Charged");
+		} catch (SavingFeeError e) {
+			System.out.println(e);
 		}
 		assertEquals(950, s2.getsavingBalance());
 	}

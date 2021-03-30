@@ -93,4 +93,10 @@ public class Saving_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank{
 		System.out.println("\nSavings Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
 		System.out.println("    " + getId() + "\t" + getName() + "\t" + getsavingBalance());
 	}	
+	/**
+	 * Prints out savings account details but method is specified for list items
+	 */
+	public void printSavingsAccountDetailsFromList() {
+		System.out.println("    " + getId() + "\t" + getName() + "\t" + getsavingBalance());
+	}
 }

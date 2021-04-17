@@ -8,7 +8,7 @@ public class Account_S2021_SchmeelkBank {
 	/**
 	 * The id and (account) name is common knowledge
 	 */
-	private int id;
+	private String id;
 	private String name;
 	/**
 	 * First constructor for the Account class
@@ -21,7 +21,7 @@ public class Account_S2021_SchmeelkBank {
 	 * @param id Set Account ID in the constructor
 	 * @param name Set Account Name in the constructor
 	 */
-	public Account_S2021_SchmeelkBank(int id, String name) {
+	public Account_S2021_SchmeelkBank(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -29,14 +29,14 @@ public class Account_S2021_SchmeelkBank {
 	 * 
 	 * @return the Account ID
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	/**
 	 * 
 	 * @param id Sets Account ID
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	/**

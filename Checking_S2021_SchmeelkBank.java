@@ -15,7 +15,7 @@ public class Checking_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank {
 	 * @param name Set Checking Account Name in the constructor
 	 * @param checkingBalance Set Checking Account Balance in the constructor
 	 */
-	public Checking_S2021_SchmeelkBank(int id, String name, int checkingBalance) {
+	public Checking_S2021_SchmeelkBank(String id, String name, int checkingBalance) {
 		setId(id);
 		setName(name);
 		this.checkingBalance = checkingBalance;
@@ -63,8 +63,8 @@ public class Checking_S2021_SchmeelkBank extends Account_S2021_SchmeelkBank {
 	 * Prints out the Checking Account ID, Checking Account Name and Account Checking Balance
 	 */
 	public void printCheckingAccountDetails() {
-		System.out.println("\nChecking Account:\n" + "Account Number\t" + "Account Name\t\t" + "Amount");
-		System.out.println("   " + getId() + "\t" + getName() + "\t$" + getcheckingBalance());
+		System.out.println("\nChecking Account:\n" + "\tAccount Number\t" + "\t\tAccount Name\t\t" + "\tAmount");
+		System.out.println(getId() + "\t" + getName() + "\t$" + getcheckingBalance());
 	}
 	/**
 	 * Prints out checking account details but method is specified for list items

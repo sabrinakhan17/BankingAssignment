@@ -11,8 +11,8 @@ class Saving_S2021_SchmeelkBank_Test {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		s1 = new Saving_S2021_SchmeelkBank(1, "Savings 1", 3000);
-		s2 = new Saving_S2021_SchmeelkBank(2, "Savings 2", 1000);
+		s1 = new Saving_S2021_SchmeelkBank("1", "Savings 1", 3000);
+		s2 = new Saving_S2021_SchmeelkBank("2", "Savings 2", 1000);
 	}
 	
 	@Test

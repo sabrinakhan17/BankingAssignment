@@ -9,7 +9,7 @@ class Checking_S2021_SchmeelkBank_Test {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		c1 = new Checking_S2021_SchmeelkBank(1, "Checking 1", 1000);
+		c1 = new Checking_S2021_SchmeelkBank("1", "Checking 1", 1000);
 	}
 	
 	@Test
@@ -39,4 +39,3 @@ class Checking_S2021_SchmeelkBank_Test {
 	}
 	
 }
-

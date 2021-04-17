@@ -1,4 +1,9 @@
 import java.util.Scanner;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.InputMismatchException;
@@ -9,10 +14,66 @@ import java.util.InputMismatchException;
  */
 public class TestBanking__S2021_SchmeelkBank {
 	/**
+	 * This class declares 3 private global variables:
+	 * secretKey is used for AES encryption
+	 * cList is the Checking Account arrayList used in the user inputed checkings list account
+	 * sList is the Savings Account arrayList used in the user inputed savings list account
+	 */
+	private static SecretKeySpec secretKey;
+	private static ArrayList<Checking_S2021_SchmeelkBank> cList = new ArrayList<>();
+	private static ArrayList<Saving_S2021_SchmeelkBank> sList = new ArrayList<>();
+	/**
+	 * Week 9 Lab Update
+	 * The purpose of this method is to return a random AES Secret Key
+	 */
+	public static void randomSecretKey() {
+		try {
+			SecureRandom secureRandom = new SecureRandom();
+			byte[] key = new byte[32];
+			secureRandom.nextBytes(key);
+			secretKey = new SecretKeySpec(key, "AES");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * Week 9 Lab Update
+	 * The purpose of this method is to encrypt a string using AES
+	 * @param accountNumber is a plaintext message, this method takes the value and uses AES to encrypt it
+	 * @return the encoded account number (ciphertext)
+	 */
+	public static String encryptwithAES(String accountNumber) {
+        try{
+        	randomSecretKey();
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(accountNumber.getBytes("UTF-8")));
+        }catch (Exception e){
+            System.out.println("Error while encrypting: " + e.toString());
+        }
+        return null;
+    }
+	/**
+	 * Week 9 Update
+	 * The purpose of this method is to decrypt a string using AES
+	 * @param accountNumber this method takes accountNumber as the ciphertext to decrypt back to plaintext
+	 * @return the decoded account number (plaintext)
+	 */
+	public static String decryptwithAES(String accountNumber){
+        try{
+            Cipher cipher = Cipher.getInstance("AES"); 
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(accountNumber)));
+        }catch (Exception e){
+            System.out.println("Error while decrypting: " + e.toString());
+        }
+        return null;
+    }
+	/**
 	 * The purpose of this method is to take an inputed string and 
 	 * output the encoded string.
 	 * This method will be used when the user inputs an account name.
-	 * @param x takes String x
+	 * @param x takes String x (plaintext)
 	 * @return the method returns the encoded String
 	 */
 	public static String outputEncoding(String x) {
@@ -20,12 +81,24 @@ public class TestBanking__S2021_SchmeelkBank {
 		return encodedString;
 	}
 	/**
+	 * The purpose of this method is to decode the inputed string into its original plaintext
+	 * @param x takes String x (ciphertext)
+	 * @return the method returns the decoded string
+	 */
+	public static String decodeEncoding(String x) {
+		byte[] decodedBytes = Base64.getDecoder().decode(x);
+		return new String(decodedBytes);
+	}
+	
+	/**
 	 * The purpose of this method is to allow users to choose an account number,
 	 * account name and balance for a Checking Account.
+	 * Then, it saves the checking account to the arrayList.
 	 * The method validates that the account number and balance is inputed correctly.
+	 * The method uses the encryptwithAES method on account id.
 	 * The method uses the outputEncoding method on account name.
 	 * Finally, it prints out deposit and withdrawal functions 
-	 * (and uses the custom exceptions).
+	 * (and uses the custom exceptions). 
 	 * @param kb takes in the Scanner declared in our main method class
 	 */
 	public static void checkingAccountInputValidation(Scanner kb) {
@@ -35,11 +108,11 @@ public class TestBanking__S2021_SchmeelkBank {
 		
 		//Week 7 Part 1: Sensitive Part of Report
 		boolean inputValid = false;
-		int cANum = 0;
+		String cANum = "";
 		while(!inputValid) {
 			System.out.println("Enter a Checking Account Number:"); //Week 7 Part 1: Sensitive Part of Report
 			try {
-				cANum = kb.nextInt();
+				cANum = kb.next();
 				inputValid = true;
 			}catch(InputMismatchException e) {
 				System.out.println("Not a valid account number! Try again!");
@@ -65,7 +138,8 @@ public class TestBanking__S2021_SchmeelkBank {
 			}
 		}
 		
-		Checking_S2021_SchmeelkBank c1 = new Checking_S2021_SchmeelkBank(cANum, cAName, cAAmount);
+		Checking_S2021_SchmeelkBank c1 = new Checking_S2021_SchmeelkBank(encryptwithAES(cANum), cAName, cAAmount);
+		cList.add(c1);
 		c1.printCheckingAccountDetails(); //Week 7 Part 1: Sensitive Part of Report
 		
 		System.out.println("\nTest 2: Depositing $50");
@@ -98,7 +172,9 @@ public class TestBanking__S2021_SchmeelkBank {
 	/**
 	 * The purpose of this method is to allow users to choose an account number,
 	 * account name and balance for a Savings Account.
+	 * Then, it saves the savings account to the arrayList.
 	 * The method validates that the account number and balance is inputed correctly.
+	 * The method uses the encryptwithAES method on account id.
 	 * The method uses the outputEncoding method on account name.
 	 * Finally, it prints out deposit and withdrawal functions
 	 * (and uses the custom exceptions).
@@ -111,11 +187,11 @@ public class TestBanking__S2021_SchmeelkBank {
 		
 		//Week 7 Part 1: Sensitive Part of Report
 		boolean inputValid = false;
-		int sANum = 0;
+		String sANum = "";
 		while(!inputValid) {
 			System.out.println("Enter a Savings Account Number:"); //Week 7 Part 1: Sensitive Part of Report
 			try {
-				sANum = kb.nextInt();
+				sANum = kb.next();
 				inputValid = true;
 			}catch(InputMismatchException e) {
 				System.out.println("Not a valid account number! Try again!");
@@ -141,7 +217,8 @@ public class TestBanking__S2021_SchmeelkBank {
 			}
 		}
 		
-		Saving_S2021_SchmeelkBank s1 = new Saving_S2021_SchmeelkBank(sANum, sAName, sAAmount);
+		Saving_S2021_SchmeelkBank s1 = new Saving_S2021_SchmeelkBank(encryptwithAES(sANum), sAName, sAAmount);
+		sList.add(s1);
 		s1.printSavingsAccountDetails(); //Week 7 Part 1: Sensitive Part of Report
 		
 		System.out.println("Test 5: Charge Fee if Balance is Less Than $2000, amount deposited is $" + s1.getsavingBalance());
@@ -176,8 +253,9 @@ public class TestBanking__S2021_SchmeelkBank {
 		System.out.println();
 	}
 	/**
-	 * The purpose of this method is to take a list of checkings accounts
+	 * The purpose of this method is to take a list of checkings accounts declared in the main method,
 	 * and implement the deposit and withdrawal features
+	 * The method uses the encryptwithAES method on account id and outputEncoding on account name.
 	 * @param cList Takes in the list created in the main method that stores 
 	 * different checking accounts
 	 */
@@ -188,6 +266,7 @@ public class TestBanking__S2021_SchmeelkBank {
 			cList.get(i).printCheckingsAccountDetailsFromList();
 			System.out.println("\nAfter Encoding Account Name:\n");
 			System.out.println("Account Number\t" + "Account Name\t\t" + "Amount");
+			cList.get(i).setId(encryptwithAES(cList.get(i).getId()));
 			cList.get(i).setName(outputEncoding(cList.get(i).getName()));
 			cList.get(i).depositChecking(50);
 			cList.get(i).printCheckingsAccountDetailsFromList();
@@ -206,8 +285,9 @@ public class TestBanking__S2021_SchmeelkBank {
 		
 	}
 	/**
-	 * The purpose of this method is to take a list of savings accounts
+	 * The purpose of this method is to take a list of savings accounts declared in the main method,
 	 * and implement the deposit and withdrawal features
+	 * The method uses the encryptwithAES method on account id and outputEncoding on account name.
 	 * @param sList Takes in the list created in the main method that stores 
 	 * different savings accounts
 	 */
@@ -218,6 +298,7 @@ public class TestBanking__S2021_SchmeelkBank {
 			sList.get(i).printSavingsAccountDetailsFromList();
 			System.out.println("\nAfter Encoding Account Name:\n");
 			System.out.println("Account Number\t" + "Account Name\t" + "Amount");
+			sList.get(i).setId(encryptwithAES(sList.get(i).getId()));
 			sList.get(i).setName(outputEncoding(sList.get(i).getName()));
 			sList.get(i).printSavingsAccountDetailsFromList();
 			try {
@@ -244,47 +325,75 @@ public class TestBanking__S2021_SchmeelkBank {
 	}
 	/**
 	 * This main method was created to test the banking application.
-	 * The program calls our checking account method once and 
-	 * savings account methods twice and then tests out the following tests:
+	 * The program allows users to create checking and savings accounts and 
+	 * then tests out the following tests:
 	 * 		Test 1: Create account
 	 * 		Test 2: Deposit
 	 * 		Test 3: Withdrawal
 	 * 		Test 4: Withdrawal Error
 	 * 		Test 5: Charge Fee
+	 * There is a menu based option, that also allows for users to see
+	 * the saved checking and savings accounts
 	 * @param args Main Method Class
 	 */
-	
 	public static void main(String[] args) {
 		
-		Scanner kb = new Scanner(System.in);
-		
-		//checkingAccountInputValidation(kb);
-		//savingsAccountInputValidation(kb); //deposit less than $2000
-		//savingsAccountInputValidation(kb); //deposit more than $2000
-		
-		Checking_S2021_SchmeelkBank c1 = new Checking_S2021_SchmeelkBank(11111, "Checkings 1", 100);
-		Checking_S2021_SchmeelkBank c2 = new Checking_S2021_SchmeelkBank(22222, "Checkings 2", 5000);
-		Checking_S2021_SchmeelkBank c3 = new Checking_S2021_SchmeelkBank(33333, "Checkings 3", 4500);
+		/*
+		Checking_S2021_SchmeelkBank c1 = new Checking_S2021_SchmeelkBank("11111", "Checkings 1", 100);
+		Checking_S2021_SchmeelkBank c2 = new Checking_S2021_SchmeelkBank("22222", "Checkings 2", 5000);
+		Checking_S2021_SchmeelkBank c3 = new Checking_S2021_SchmeelkBank("33333", "Checkings 3", 4500);
 		
 		ArrayList<Checking_S2021_SchmeelkBank> cList = new ArrayList<>();
 		cList.add(c1);
 		cList.add(c2);
 		cList.add(c3);
 		
-		printCheckingsAccountFromList(cList);
-		
-		System.out.println("\n-------------------------------------------------------------------------");
-		
-		Saving_S2021_SchmeelkBank s1 = new Saving_S2021_SchmeelkBank(44444, "Savings 1", 500);
-		Saving_S2021_SchmeelkBank s2 = new Saving_S2021_SchmeelkBank(55555, "Savings 2", 3000);
-		Saving_S2021_SchmeelkBank s3 = new Saving_S2021_SchmeelkBank(77777, "Savings 3", 1500);
+		Saving_S2021_SchmeelkBank s1 = new Saving_S2021_SchmeelkBank("44444", "Savings 1", 500);
+		Saving_S2021_SchmeelkBank s2 = new Saving_S2021_SchmeelkBank("55555", "Savings 2", 3000);
+		Saving_S2021_SchmeelkBank s3 = new Saving_S2021_SchmeelkBank("77777", "Savings 3", 1500);
 		
 		ArrayList<Saving_S2021_SchmeelkBank> sList = new ArrayList<>();
 		sList.add(s1);
 		sList.add(s2);
-		sList.add(s3);
+		sList.add(s3);*/
 		
-		printSavingsAccountFromList(sList);
+		Scanner kb = new Scanner(System.in);
+		
+		System.out.println("Banking Options:\n1 - Create Checkings Account\n2 - Create Savings Account\n3 - View Checking Accounts\n4 - View Savings Accounts\n5 - Exit\n");
+		
+		boolean exit = false;
+		
+		while(!exit) {
+			System.out.println("Please choose an option: ");
+			int option = kb.nextInt();
+			switch(option) {
+			case 1:
+				checkingAccountInputValidation(kb);
+				//printCheckingsAccountFromList(cList);
+				break;
+			case 2:
+				savingsAccountInputValidation(kb);
+				//printSavingsAccountFromList(sList);
+				break;
+			case 3:
+				System.out.println("Checkings Accounts:");
+				for(int i = 0; i < cList.size(); i++) {   
+				    System.out.print(decryptwithAES(cList.get(i).getId())+", "+decodeEncoding(cList.get(i).getName())+", "+cList.get(i).getcheckingBalance()+"\n");
+				} 
+				System.out.println();
+				break;
+			case 4:
+				System.out.println("Savings Accounts:");
+				for(int i = 0; i < sList.size(); i++) {   
+				    System.out.print(decryptwithAES(sList.get(i).getId())+", "+decodeEncoding(sList.get(i).getName())+", "+sList.get(i).getsavingBalance()+"\n");
+				} 
+				System.out.println();
+				break;
+			default:
+				System.out.println("exiting program.....\nHave a nice day!");
+				exit = true;
+			}
+		}
 		
 		kb.close();
 		

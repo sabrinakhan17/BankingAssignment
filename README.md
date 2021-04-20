@@ -5,8 +5,8 @@ CSS 1035 Banking Assignment
 **Purpose:** Java program that creates a Checking and Savings Account (with Inheritance).
 
 Main Functions:
-- ~~Now allows users to input Checking and Saving Account Number, Name and Balance~~
-- **LAB 7 EDIT:** Allowing users to input data is commented out, there are now 2 lists with data in it. The program will iterate through each list and print out the following functions below.
+- Now allows users to input Checking and Saving Account Number, Name and Balance
+- ~~**LAB 7 EDIT:** Allowing users to input data is commented out, there are now 2 lists with data in it. The program will iterate through each list and print out the following functions below.~~
 - Input Validation on Checking and Saving Account Number and Balace
   - If user inputs a string instead of a integer value, there is an error
 - Output Encoding on Checking and Saving Account Name
@@ -17,3 +17,4 @@ Main Functions:
 - Charging a fee
   - If balance first deposited in Savings Account is less than $2,000, there's an automatic $50 fee charged
   - Custom Exception: SavingFeeError created
+- AES Encryption added on Checking and Saving Account Number

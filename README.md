@@ -19,9 +19,9 @@ Main Banking Functions:
 
 Secure Coding Functions:
 - **AES Encryption** added on Checking and Saving Account Number
-- **Input Validation **
+- **Input Validation**
   - On Checking and Saving Account Number and Balace
   - If a user inputs a string instead of a integer value, there is an error
-- **Output Encoding **
+- **Output Encoding**
   - On Checking and Saving Account Name
   - When user inputs an Account Name, its encoded to keep the Account Name secure

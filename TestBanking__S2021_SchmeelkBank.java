@@ -325,15 +325,23 @@ public class TestBanking__S2021_SchmeelkBank {
 	}
 	/**
 	 * This main method was created to test the banking application.
-	 * The program allows users to create checking and savings accounts and 
-	 * then tests out the following tests:
-	 * 		Test 1: Create account
-	 * 		Test 2: Deposit
-	 * 		Test 3: Withdrawal
-	 * 		Test 4: Withdrawal Error
-	 * 		Test 5: Charge Fee
-	 * There is a menu based option, that also allows for users to see
-	 * the saved checking and savings accounts
+	 * The program first asks the user if they are a bank employee or a bank account user,
+	 * if they are a bank employee the following options get printed:
+	 *		1 - View Previous Generic Checkings Accounts Transactions
+	 *		2 - View Previous Generic Savings Accounts Transactions
+	 *		3 - Exit
+	 * NOTE: The bank employee cannot create a checkings or savings account, they can 
+	 * only see the previous user created accounts and transactions, refer to the Week 7 
+	 * Lab: Generics example
+	 * However, if they are a user, the following options get printed:
+	 * 		1 - Create Checkings Account
+	 * 		2 - Create Savings Account
+	 * 		3 - View Checking Accounts
+	 * 		4 - View Savings Accounts
+	 * 		5 - Exit
+	 * Users are allowed to their create checkings and/or savings accounts, and then view
+	 * them. Additional functions: Encrypting account number and name and testing custom 
+	 * exceptions.
 	 * @param args Main Method Class
 	 */
 	public static void main(String[] args) {
@@ -364,7 +372,7 @@ public class TestBanking__S2021_SchmeelkBank {
 		int employeeOption = kb.nextInt();
 		if(employeeOption == 1) {
 			System.out.println("Welcome Employee!");
-			System.out.println("\nBanking Options:\n1 - View Previous Generic Checkings Accounts Transactions\n1 - View Previous Generic Savings Accounts Transactions\n3 - Exit\n");
+			System.out.println("\nBanking Options:\n1 - View Previous Generic Checkings Accounts Transactions\n2 - View Previous Generic Savings Accounts Transactions\n3 - Exit\n");
 			boolean empExit = false;
 			while(!empExit) {
 				System.out.println("\nPlease choose an option: ");

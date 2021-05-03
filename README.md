@@ -7,15 +7,21 @@ CSS 1035 Spring 2021 Banking Assignment
 Name of Our Bank: Schmeelk’sBank_Spring2021
 
 Main Banking Functions:
-- Depositing money from Checkings and Savings Account
-- Withdrawl money from Checkings and Savings Account
-  - **Custom Exception: InvalidWithdrawalAmount created**
-- Charging a fee
-  - If balance first deposited in Savings Account is less than $2,000, there's an automatic $50 fee charged
-  - **Custom Exception: SavingFeeError created**
-- User Input: 
-  - Allows users to input Checking and Saving Account Number, Name and Balance
-- ~~**LAB 7 EDIT:** Allowing users to input data is commented out, there are now 2 lists with data in it. The program will iterate through each list and print out the following functions below.~~
+- Asks the user if they are a Bank Employee or a Bank Account User
+- If they are a **Bank Employee** the following functions get printed:
+  - Lab 7 Generics Example is Implemented
+    - There are two arraylists with checkings and savings account information already created, the program will iterate through each list and deposit money, withdrawal money and charge a fee.
+    - Bank Employees cannot create new checkings or savings account
+  - NOTE: This option allows **ONLY Bank Employees** to see many different checkings and savings account transactions.
+- If they are a **Bank Account User** the following functions get printed:
+  - **User Input:** 
+    - Allows users to input Checking and Saving Account Number, Name and Balance
+  - Depositing money from Checkings and Savings Account
+  - Withdrawl money from Checkings and Savings Account
+    - **Custom Exception: InvalidWithdrawalAmount created**
+  - Charging a fee
+    - If balance first deposited in Savings Account is less than $2,000, there's an automatic $50 fee charged
+    - **Custom Exception: SavingFeeError created**
 
 Secure Coding Functions:
 - **AES Encryption** added on Checking and Saving Account Number
@@ -25,3 +31,6 @@ Secure Coding Functions:
 - **Output Encoding**
   - On Checking and Saving Account Name
   - When user inputs an Account Name, its encoded to keep the Account Name secure
+- **Generics Example**
+  - 2 ArrayLists with Checkings and Savings account information have already been created
+  - The program iterates through these lists and prints out the transactions (deposting money, withdrawing money and charging a fee)

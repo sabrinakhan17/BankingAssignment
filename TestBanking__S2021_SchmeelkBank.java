@@ -329,7 +329,9 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * if they are a bank employee the following options get printed:
 	 *		1 - View Previous Generic Checkings Accounts Transactions
 	 *		2 - View Previous Generic Savings Accounts Transactions
-	 *		3 - Exit
+	 *		3 - View Checkings Accounts List
+	 *		4 - View Savings Accounts List
+	 *		5 - Exit
 	 * NOTE: The bank employee cannot create a checkings or savings account, they can 
 	 * only see the previous user created accounts and transactions, refer to the Week 7 
 	 * Lab: Generics example
@@ -347,18 +349,18 @@ public class TestBanking__S2021_SchmeelkBank {
 	public static void main(String[] args) {
 		
 		
-		Checking_S2021_SchmeelkBank genericC1 = new Checking_S2021_SchmeelkBank("11111", "Checkings 1", 100);
-		Checking_S2021_SchmeelkBank genericC2 = new Checking_S2021_SchmeelkBank("22222", "Checkings 2", 5000);
-		Checking_S2021_SchmeelkBank genericC3 = new Checking_S2021_SchmeelkBank("33333", "Checkings 3", 4500);
+		Checking_S2021_SchmeelkBank genericC1 = new Checking_S2021_SchmeelkBank("43659", "My_Frst_Chckngs_1", 100);
+		Checking_S2021_SchmeelkBank genericC2 = new Checking_S2021_SchmeelkBank("17613", "ZachsCheckings2", 5000);
+		Checking_S2021_SchmeelkBank genericC3 = new Checking_S2021_SchmeelkBank("92465", "chck3", 4500);
 		
 		ArrayList<Checking_S2021_SchmeelkBank> genericCList = new ArrayList<>();
 		genericCList.add(genericC1);
 		genericCList.add(genericC2);
 		genericCList.add(genericC3);
 		
-		Saving_S2021_SchmeelkBank genericS1 = new Saving_S2021_SchmeelkBank("44444", "Savings 1", 500);
-		Saving_S2021_SchmeelkBank genericS2 = new Saving_S2021_SchmeelkBank("55555", "Savings 2", 3000);
-		Saving_S2021_SchmeelkBank genericS3 = new Saving_S2021_SchmeelkBank("77777", "Savings 3", 1500);
+		Saving_S2021_SchmeelkBank genericS1 = new Saving_S2021_SchmeelkBank("78256", "Our_Savings_Account_1", 500);
+		Saving_S2021_SchmeelkBank genericS2 = new Saving_S2021_SchmeelkBank("89721", "MariesSavings2", 3000);
+		Saving_S2021_SchmeelkBank genericS3 = new Saving_S2021_SchmeelkBank("93028", "Savings 3", 1500);
 		
 		ArrayList<Saving_S2021_SchmeelkBank> genericSList = new ArrayList<>();
 		genericSList.add(genericS1);
@@ -372,7 +374,7 @@ public class TestBanking__S2021_SchmeelkBank {
 		int employeeOption = kb.nextInt();
 		if(employeeOption == 1) {
 			System.out.println("Welcome Employee!");
-			System.out.println("\nBanking Options:\n1 - View Previous Generic Checkings Accounts Transactions\n2 - View Previous Generic Savings Accounts Transactions\n3 - Exit\n");
+			System.out.println("\nBanking Options:\n1 - View Previous Generic Checkings Accounts Transactions\n2 - View Previous Generic Savings Accounts Transactions\n3 - View Checkings Accounts List\n4 - View Savings Accounts List\n5 - Exit\n");
 			boolean empExit = false;
 			while(!empExit) {
 				System.out.println("\nPlease choose an option: ");
@@ -383,6 +385,20 @@ public class TestBanking__S2021_SchmeelkBank {
 					break;
 				case 2:
 					printSavingsAccountFromList(genericSList);
+					break;
+				case 3:
+					System.out.println("Previous Checkings Accounts List:");
+					for(int i = 0; i < genericCList.size(); i++) {   
+					    System.out.print(genericCList.get(i).getId()+", "+genericCList.get(i).getName()+", "+genericCList.get(i).getcheckingBalance()+"\n");
+					} 
+					System.out.println();
+					break;
+				case 4:
+					System.out.println("Previous Savings Accounts List:");
+					for(int i = 0; i < genericSList.size(); i++) {   
+					    System.out.print(genericSList.get(i).getId()+", "+genericSList.get(i).getName()+", "+genericSList.get(i).getsavingBalance()+"\n");
+					} 
+					System.out.println();
 					break;
 				default:
 					System.out.println("exiting program.....\nHave a nice day!");

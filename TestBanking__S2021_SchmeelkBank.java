@@ -259,25 +259,25 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * @param cList Takes in the list created in the main method that stores 
 	 * different checking accounts
 	 */
-	public static void printCheckingsAccountFromList(ArrayList<Checking_S2021_SchmeelkBank> cList) {
+	public static void printCheckingsAccountFromList(ArrayList<Checking_S2021_SchmeelkBank> genericCList) {
 		
-		for(int i = 0; i < cList.size(); i++) {
+		for(int i = 0; i < genericCList.size(); i++) {
 			System.out.println("\nChecking Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
-			cList.get(i).printCheckingsAccountDetailsFromList();
+			genericCList.get(i).printCheckingsAccountDetailsFromList();
 			System.out.println("\nAfter Encoding Account Name:\n");
 			System.out.println("Account Number\t" + "Account Name\t\t" + "Amount");
-			cList.get(i).setId(encryptwithAES(cList.get(i).getId()));
-			cList.get(i).setName(outputEncoding(cList.get(i).getName()));
-			cList.get(i).depositChecking(50);
-			cList.get(i).printCheckingsAccountDetailsFromList();
+			genericCList.get(i).setId(encryptwithAES(genericCList.get(i).getId()));
+			genericCList.get(i).setName(outputEncoding(genericCList.get(i).getName()));
+			genericCList.get(i).depositChecking(50);
+			genericCList.get(i).printCheckingsAccountDetailsFromList();
 			try {
-				cList.get(i).withdrawlChecking(50);
+				genericCList.get(i).withdrawlChecking(50);
 			} catch (InvalidWithdrawalAmount e) {
 				System.out.println(e);
 			}
-			cList.get(i).printCheckingsAccountDetailsFromList();
+			genericCList.get(i).printCheckingsAccountDetailsFromList();
 			try {
-				cList.get(i).withdrawlChecking(cList.get(i).getcheckingBalance()+500);
+				genericCList.get(i).withdrawlChecking(genericCList.get(i).getcheckingBalance()+500);
 			} catch (InvalidWithdrawalAmount e) {
 				System.out.println(e);
 			}
@@ -291,36 +291,36 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * @param sList Takes in the list created in the main method that stores 
 	 * different savings accounts
 	 */
-	public static void printSavingsAccountFromList(ArrayList<Saving_S2021_SchmeelkBank> sList) {
+	public static void printSavingsAccountFromList(ArrayList<Saving_S2021_SchmeelkBank> genericSList) {
 		
-		for(int i = 0; i < sList.size(); i++) {
+		for(int i = 0; i < genericSList.size(); i++) {
 			System.out.println("\nSavings Account:\n" + "Account Number\t" + "Account Name\t" + "Amount");
-			sList.get(i).printSavingsAccountDetailsFromList();
+			genericSList.get(i).printSavingsAccountDetailsFromList();
 			System.out.println("\nAfter Encoding Account Name:\n");
 			System.out.println("Account Number\t" + "Account Name\t" + "Amount");
-			sList.get(i).setId(encryptwithAES(sList.get(i).getId()));
-			sList.get(i).setName(outputEncoding(sList.get(i).getName()));
-			sList.get(i).printSavingsAccountDetailsFromList();
+			genericSList.get(i).setId(encryptwithAES(genericSList.get(i).getId()));
+			genericSList.get(i).setName(outputEncoding(genericSList.get(i).getName()));
+			genericSList.get(i).printSavingsAccountDetailsFromList();
 			try {
-				sList.get(i).fee();
+				genericSList.get(i).fee();
 			} catch (SavingFeeError e1) {
 				System.out.println(e1);
 			}
-			sList.get(i).printSavingsAccountDetailsFromList();
-			sList.get(i).depositSavings(100);
-			sList.get(i).printSavingsAccountDetailsFromList();
+			genericSList.get(i).printSavingsAccountDetailsFromList();
+			genericSList.get(i).depositSavings(100);
+			genericSList.get(i).printSavingsAccountDetailsFromList();
 			try {
-				sList.get(i).withdrawlSavings(sList.get(i).getsavingBalance()+500);
+				genericSList.get(i).withdrawlSavings(genericSList.get(i).getsavingBalance()+500);
 			} catch (InvalidWithdrawalAmount e) {
 				System.out.println(e);
 			}
-			sList.get(i).printSavingsAccountDetailsFromList();
+			genericSList.get(i).printSavingsAccountDetailsFromList();
 			try {
-				sList.get(i).withdrawlSavings(300);
+				genericSList.get(i).withdrawlSavings(300);
 			} catch (InvalidWithdrawalAmount e) {
 				System.out.println(e);
 			}
-			sList.get(i).printSavingsAccountDetailsFromList();
+			genericSList.get(i).printSavingsAccountDetailsFromList();
 		}
 	}
 	/**
@@ -338,61 +338,86 @@ public class TestBanking__S2021_SchmeelkBank {
 	 */
 	public static void main(String[] args) {
 		
-		/*
-		Checking_S2021_SchmeelkBank c1 = new Checking_S2021_SchmeelkBank("11111", "Checkings 1", 100);
-		Checking_S2021_SchmeelkBank c2 = new Checking_S2021_SchmeelkBank("22222", "Checkings 2", 5000);
-		Checking_S2021_SchmeelkBank c3 = new Checking_S2021_SchmeelkBank("33333", "Checkings 3", 4500);
 		
-		ArrayList<Checking_S2021_SchmeelkBank> cList = new ArrayList<>();
-		cList.add(c1);
-		cList.add(c2);
-		cList.add(c3);
+		Checking_S2021_SchmeelkBank genericC1 = new Checking_S2021_SchmeelkBank("11111", "Checkings 1", 100);
+		Checking_S2021_SchmeelkBank genericC2 = new Checking_S2021_SchmeelkBank("22222", "Checkings 2", 5000);
+		Checking_S2021_SchmeelkBank genericC3 = new Checking_S2021_SchmeelkBank("33333", "Checkings 3", 4500);
 		
-		Saving_S2021_SchmeelkBank s1 = new Saving_S2021_SchmeelkBank("44444", "Savings 1", 500);
-		Saving_S2021_SchmeelkBank s2 = new Saving_S2021_SchmeelkBank("55555", "Savings 2", 3000);
-		Saving_S2021_SchmeelkBank s3 = new Saving_S2021_SchmeelkBank("77777", "Savings 3", 1500);
+		ArrayList<Checking_S2021_SchmeelkBank> genericCList = new ArrayList<>();
+		genericCList.add(genericC1);
+		genericCList.add(genericC2);
+		genericCList.add(genericC3);
 		
-		ArrayList<Saving_S2021_SchmeelkBank> sList = new ArrayList<>();
-		sList.add(s1);
-		sList.add(s2);
-		sList.add(s3);*/
+		Saving_S2021_SchmeelkBank genericS1 = new Saving_S2021_SchmeelkBank("44444", "Savings 1", 500);
+		Saving_S2021_SchmeelkBank genericS2 = new Saving_S2021_SchmeelkBank("55555", "Savings 2", 3000);
+		Saving_S2021_SchmeelkBank genericS3 = new Saving_S2021_SchmeelkBank("77777", "Savings 3", 1500);
+		
+		ArrayList<Saving_S2021_SchmeelkBank> genericSList = new ArrayList<>();
+		genericSList.add(genericS1);
+		genericSList.add(genericS2);
+		genericSList.add(genericS3);		
 		
 		Scanner kb = new Scanner(System.in);
+		System.out.println("Welcome to Schmeelk's Bank - Spring 2021");
 		
-		System.out.println("Banking Options:\n1 - Create Checkings Account\n2 - Create Savings Account\n3 - View Checking Accounts\n4 - View Savings Accounts\n5 - Exit\n");
-		
-		boolean exit = false;
-		
-		while(!exit) {
-			System.out.println("Please choose an option: ");
-			int option = kb.nextInt();
-			switch(option) {
-			case 1:
-				checkingAccountInputValidation(kb);
-				//printCheckingsAccountFromList(cList);
-				break;
-			case 2:
-				savingsAccountInputValidation(kb);
-				//printSavingsAccountFromList(sList);
-				break;
-			case 3:
-				System.out.println("Checkings Accounts:");
-				for(int i = 0; i < cList.size(); i++) {   
-				    System.out.print(decryptwithAES(cList.get(i).getId())+", "+decodeEncoding(cList.get(i).getName())+", "+cList.get(i).getcheckingBalance()+"\n");
-				} 
-				System.out.println();
-				break;
-			case 4:
-				System.out.println("Savings Accounts:");
-				for(int i = 0; i < sList.size(); i++) {   
-				    System.out.print(decryptwithAES(sList.get(i).getId())+", "+decodeEncoding(sList.get(i).getName())+", "+sList.get(i).getsavingBalance()+"\n");
-				} 
-				System.out.println();
-				break;
-			default:
-				System.out.println("exiting program.....\nHave a nice day!");
-				exit = true;
+		System.out.println("Are you a \n 1 - Bank Employee \nor a \n 2 - User?");
+		int employeeOption = kb.nextInt();
+		if(employeeOption == 1) {
+			System.out.println("Welcome Employee!");
+			System.out.println("\nBanking Options:\n1 - View Previous Generic Checkings Accounts Transactions\n1 - View Previous Generic Savings Accounts Transactions\n3 - Exit\n");
+			boolean empExit = false;
+			while(!empExit) {
+				System.out.println("\nPlease choose an option: ");
+				int empOption = kb.nextInt();
+				switch(empOption) {
+				case 1:
+					printCheckingsAccountFromList(genericCList);
+					break;
+				case 2:
+					printSavingsAccountFromList(genericSList);
+					break;
+				default:
+					System.out.println("exiting program.....\nHave a nice day!");
+					empExit = true;
+				}
 			}
+		}else if(employeeOption == 2) {
+			System.out.println("Welcome User!");
+			System.out.println("\nBanking Options:\n1 - Create Checkings Account\n2 - Create Savings Account\n3 - View Checking Accounts\n4 - View Savings Accounts\n5 - Exit\n");
+
+			boolean exit = false;
+
+			while(!exit) {
+				System.out.println("Please choose an option: ");
+				int option = kb.nextInt();
+				switch(option) {
+				case 1:
+					checkingAccountInputValidation(kb);
+					break;
+				case 2:
+					savingsAccountInputValidation(kb);
+					break;
+				case 3:
+					System.out.println("Checkings Accounts:");
+					for(int i = 0; i < cList.size(); i++) {   
+					    System.out.print(decryptwithAES(cList.get(i).getId())+", "+decodeEncoding(cList.get(i).getName())+", "+cList.get(i).getcheckingBalance()+"\n");
+					} 
+					System.out.println();
+					break;
+				case 4:
+					System.out.println("Savings Accounts:");
+					for(int i = 0; i < sList.size(); i++) {   
+					    System.out.print(decryptwithAES(sList.get(i).getId())+", "+decodeEncoding(sList.get(i).getName())+", "+sList.get(i).getsavingBalance()+"\n");
+					} 
+					System.out.println();
+					break;
+				default:
+					System.out.println("exiting program.....\nHave a nice day!");
+					exit = true;
+				}
+			}
+		}else {
+			System.out.println("ERROR!! \nexiting program.....\nHave a nice day!");
 		}
 		
 		kb.close();

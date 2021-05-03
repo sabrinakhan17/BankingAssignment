@@ -10,7 +10,7 @@ Main Banking Functions:
 - Asks the user if they are a Bank Employee or a Bank Account User
 - If they are a **Bank Employee** the following functions get printed:
   - Lab 7 Generics Example is Implemented
-    - There are two arraylists with checkings and savings account information already created, the program will iterate through each list and deposit money, withdrawal money and charge a fee.
+    - There are two arraylists with checkings and savings account information already created, the program will iterate through each list and deposit money, withdrawal money and charge a fee. They can also view the checkings or savings account information.
     - Bank Employees cannot create new checkings or savings account
   - NOTE: This option allows **ONLY Bank Employees** to see many different checkings and savings account transactions.
 - If they are a **Bank Account User** the following functions get printed:

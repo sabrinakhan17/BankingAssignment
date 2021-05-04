@@ -256,7 +256,7 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * The purpose of this method is to take a list of checkings accounts declared in the main method,
 	 * and implement the deposit and withdrawal features
 	 * The method uses the encryptwithAES method on account id and outputEncoding on account name.
-	 * @param cList Takes in the list created in the main method that stores 
+	 * @param genericCList Takes in the list created in the main method that stores 
 	 * different checking accounts
 	 */
 	public static void printCheckingsAccountFromList(ArrayList<Checking_S2021_SchmeelkBank> genericCList) {
@@ -288,7 +288,7 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * The purpose of this method is to take a list of savings accounts declared in the main method,
 	 * and implement the deposit and withdrawal features
 	 * The method uses the encryptwithAES method on account id and outputEncoding on account name.
-	 * @param sList Takes in the list created in the main method that stores 
+	 * @param genericSList Takes in the list created in the main method that stores 
 	 * different savings accounts
 	 */
 	public static void printSavingsAccountFromList(ArrayList<Saving_S2021_SchmeelkBank> genericSList) {

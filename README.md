@@ -39,3 +39,7 @@ Secure Coding Functions:
 - **Generics Example**
   - 2 ArrayLists with Checkings and Savings account information have already been created
   - The program iterates through these lists and prints out the transactions (deposting money, withdrawing money and charging a fee)
+ 
+ Additional Features:
+ - JavaDoc API
+ - JUnit Testing

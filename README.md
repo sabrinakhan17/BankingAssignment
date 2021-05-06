@@ -30,9 +30,9 @@ Secure Coding Functions:
   - SavingFeeError
     - After creating a Savings Account, if the initial balance is less than $2,000, there will be an error 
 - **AES Encryption and Decryption** 
-  - On Checking and Saving Account Number
+  - On Checking and Saving Account ID Number
 - **Input Validation**
-  - On Checking and Saving Account Balace
+  - On Checking and Saving Account Balance
   - If a user inputs a string instead of a integer value, there is an error
 - **Output Encoding**
   - On Checking and Saving Account Name

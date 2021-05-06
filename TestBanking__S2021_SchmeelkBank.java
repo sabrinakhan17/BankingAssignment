@@ -95,8 +95,9 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * account name and balance for a Checking Account.
 	 * Then, it saves the checking account to the arrayList.
 	 * The method validates that the account number and balance is inputed correctly.
-	 * The method uses the encryptwithAES method on account id.
+	 * The method uses the encryptwithAES method on account ID.
 	 * The method uses the outputEncoding method on account name.
+	 * The method uses the inputValidation method on account balance.
 	 * Finally, it prints out deposit and withdrawal functions 
 	 * (and uses the custom exceptions). 
 	 * @param kb takes in the Scanner declared in our main method class
@@ -107,37 +108,26 @@ public class TestBanking__S2021_SchmeelkBank {
 		System.out.println("Test 1: Create Checking Account");
 		
 		//Week 7 Part 1: Sensitive Part of Report
-		boolean inputValid = false;
-		String cANum = "";
-		while(!inputValid) {
-			System.out.println("Enter a Checking Account Number:"); //Week 7 Part 1: Sensitive Part of Report
-			try {
-				cANum = kb.next();
-				inputValid = true;
-			}catch(InputMismatchException e) {
-				System.out.println("Not a valid account number! Try again!");
-				kb.next();
-			}
-		}
+		System.out.println("Enter a Checking Account Number:");
+		String cANum = kb.next();
 		
 		kb.nextLine();
 		System.out.println("Enter a Checking Account Name:"); //Week 7 Part 1: Sensitive Part of Report
 		String cAName = outputEncoding(kb.nextLine());
 		
 		//Week 7 Part 1: Sensitive Part of Report
-		boolean inputValid2 = false;
+		boolean inputValid = false;
 		int cAAmount = 0;
-		while(!inputValid2) {
+		while(!inputValid) {
 			System.out.println("Enter Initial Amount:"); //Week 7 Part 1: Sensitive Part of Report
 			try {
 				cAAmount = kb.nextInt();
-				inputValid2 = true;
+				inputValid = true;
 			}catch(InputMismatchException e) {
 				System.out.println("Not a valid amount! Try again!");
 				kb.next();
 			}
 		}
-		
 		Checking_S2021_SchmeelkBank c1 = new Checking_S2021_SchmeelkBank(encryptwithAES(cANum), cAName, cAAmount);
 		cList.add(c1);
 		c1.printCheckingAccountDetails(); //Week 7 Part 1: Sensitive Part of Report
@@ -176,6 +166,7 @@ public class TestBanking__S2021_SchmeelkBank {
 	 * The method validates that the account number and balance is inputed correctly.
 	 * The method uses the encryptwithAES method on account id.
 	 * The method uses the outputEncoding method on account name.
+	 * The method uses the inputValidation method on account balance.
 	 * Finally, it prints out deposit and withdrawal functions
 	 * (and uses the custom exceptions).
 	 * @param kb takes in the Scanner declared in our main method class
@@ -186,31 +177,21 @@ public class TestBanking__S2021_SchmeelkBank {
 		System.out.println("Test 1: Create Savings Account");
 		
 		//Week 7 Part 1: Sensitive Part of Report
-		boolean inputValid = false;
-		String sANum = "";
-		while(!inputValid) {
-			System.out.println("Enter a Savings Account Number:"); //Week 7 Part 1: Sensitive Part of Report
-			try {
-				sANum = kb.next();
-				inputValid = true;
-			}catch(InputMismatchException e) {
-				System.out.println("Not a valid account number! Try again!");
-				kb.next();
-			}
-		}
+		System.out.println("Enter a Savings Account Number:");
+		String sANum = kb.next();
 		
 		kb.nextLine();
 		System.out.println("Enter a Savings Account Name:"); //Week 7 Part 1: Sensitive Part of Report
 		String sAName = outputEncoding(kb.nextLine());
 		
 		//Week 7 Part 1: Sensitive Part of Report
-		boolean inputValid2 = false;
+		boolean inputValid = false;
 		int sAAmount = 0;
-		while(!inputValid2) {
+		while(!inputValid) {
 			System.out.println("Enter Initial Amount:"); //Week 7 Part 1: Sensitive Part of Report
 			try {
 				sAAmount = kb.nextInt();
-				inputValid2 = true;
+				inputValid = true;
 			}catch(InputMismatchException e) {
 				System.out.println("Not a valid amount! Try again!");
 				kb.next();
@@ -389,14 +370,14 @@ public class TestBanking__S2021_SchmeelkBank {
 				case 3:
 					System.out.println("Previous Checkings Accounts List:");
 					for(int i = 0; i < genericCList.size(); i++) {   
-					    System.out.print(genericCList.get(i).getId()+", "+genericCList.get(i).getName()+", "+genericCList.get(i).getcheckingBalance()+"\n");
+					    System.out.print(genericCList.get(i).getId()+", "+genericCList.get(i).getName()+", $"+genericCList.get(i).getcheckingBalance()+"\n");
 					} 
 					System.out.println();
 					break;
 				case 4:
 					System.out.println("Previous Savings Accounts List:");
 					for(int i = 0; i < genericSList.size(); i++) {   
-					    System.out.print(genericSList.get(i).getId()+", "+genericSList.get(i).getName()+", "+genericSList.get(i).getsavingBalance()+"\n");
+					    System.out.print(genericSList.get(i).getId()+", "+genericSList.get(i).getName()+", $"+genericSList.get(i).getsavingBalance()+"\n");
 					} 
 					System.out.println();
 					break;
@@ -424,14 +405,14 @@ public class TestBanking__S2021_SchmeelkBank {
 				case 3:
 					System.out.println("Checkings Accounts:");
 					for(int i = 0; i < cList.size(); i++) {   
-					    System.out.print(decryptwithAES(cList.get(i).getId())+", "+decodeEncoding(cList.get(i).getName())+", "+cList.get(i).getcheckingBalance()+"\n");
+					    System.out.print(decryptwithAES(cList.get(i).getId())+", "+decodeEncoding(cList.get(i).getName())+", $"+cList.get(i).getcheckingBalance()+"\n");
 					} 
 					System.out.println();
 					break;
 				case 4:
 					System.out.println("Savings Accounts:");
 					for(int i = 0; i < sList.size(); i++) {   
-					    System.out.print(decryptwithAES(sList.get(i).getId())+", "+decodeEncoding(sList.get(i).getName())+", "+sList.get(i).getsavingBalance()+"\n");
+					    System.out.print(decryptwithAES(sList.get(i).getId())+", "+decodeEncoding(sList.get(i).getName())+", $"+sList.get(i).getsavingBalance()+"\n");
 					} 
 					System.out.println();
 					break;

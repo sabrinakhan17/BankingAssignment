@@ -17,7 +17,7 @@ public class InvalidWithdrawalAmount extends Exception {
 	 * or savings class
 	 */
 	public InvalidWithdrawalAmount(int withdrawAmount) {
-		super("Withdrawl Error $" + withdrawAmount + " Cannot Be Withdrawn");
+		super("Withdrawal Error $" + withdrawAmount + " Cannot Be Withdrawn");
 	    this.withdrawAmount = withdrawAmount;
 	}
 	/**

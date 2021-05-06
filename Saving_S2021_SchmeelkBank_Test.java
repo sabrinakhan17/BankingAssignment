@@ -77,7 +77,7 @@ public class Saving_S2021_SchmeelkBank_Test {
 	 * charged to their account
 	 * In the first try and catch block, the first Savings account has a balance of more
 	 * than $2,000 which means we are expecting the output to be "$50 Fee was NOT charged"
-	 * In the second try and catch block, the second Savings accound has a balance of less
+	 * In the second try and catch block, the second Savings account has a balance of less
 	 * than $2,000, which means we will 'catch' the custom exception, SavingFeeError, and
 	 * print out "SavingFeeError: First Time Savings Balance Error: $50 Fee Charged"
 	 */

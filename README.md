@@ -8,14 +8,19 @@ Name of Our Bank: Schmeelk’sBank_Spring2021
 
 Main Banking Functions:
 - Asks the user if they are a Bank Employee or a Bank Account User
-- If they are a **Bank Employee** the following functions get printed:
+- **If they are a Bank Employee the following functions get printed:**
   - Lab 7 Generics Example is Implemented
     - There are two arraylists with checkings and savings account information already created, the program will iterate through each list and deposit money, withdrawal money and charge a fee. They can also view the checkings or savings account information.
+    - AES Encryption is implemented on the Account ID and Output Encoding is implelemented on Account Balance.
+    - Input Validation is **NOT** implemented with this Generics example.
     - Bank Employees cannot create new checkings or savings account
   - NOTE: This option allows **ONLY Bank Employees** to see many different checkings and savings account transactions.
-- If they are a **Bank Account User** the following functions get printed:
-  - **User Input:** 
+- **If they are a Bank Account User the following functions get printed:**
+  - User Input: 
     - Allows users to input Checking and Saving Account Number, Name and Balance
+    - Account Number: AES encryption is implemented
+    - Account Name: Output Encoding is implemented
+    - Account Balance: Input Validation is implemented
   - Depositing money from Checkings and Savings Account
   - Withdrawl money from Checkings and Savings Account
     - **Custom Exception: InvalidWithdrawalAmount created**
@@ -34,7 +39,7 @@ Secure Coding Functions:
 - **Input Validation**
   - On Checking and Saving Account Balance
   - If a user inputs a string instead of a integer value, there is an error
-- **Output Encoding**
+- **Output Encoding and Decoding**
   - On Checking and Saving Account Name
   - When user inputs an Account Name, its encoded to keep the Account Name secure
 - **Generics Example**

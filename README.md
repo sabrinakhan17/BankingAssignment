@@ -54,4 +54,7 @@ Secure Coding Functions:
  
  Additional Features:
  - JavaDoc API
+   - All the classes and JUnit test cases have been thouroughly documented
  - JUnit Testing
+   - Checking Account Class (tests depost and withdrawal methods)
+   - Savings Account Class (tests depost, withdrawal and charge fee methods)

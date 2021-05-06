@@ -29,7 +29,8 @@ Secure Coding Functions:
     - If a user tries to withdraw money that exceeds the current balance, there will be an error
   - SavingFeeError
     - After creating a Savings Account, if the initial balance is less than $2,000, there will be an error 
-- **AES Encryption and Decryption** added on Checking and Saving Account Number
+- **AES Encryption and Decryption** 
+  - On Checking and Saving Account Number
 - **Input Validation**
   - On Checking and Saving Account Balace
   - If a user inputs a string instead of a integer value, there is an error

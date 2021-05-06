@@ -31,14 +31,20 @@ Secure Coding Functions:
     - After creating a Savings Account, if the initial balance is less than $2,000, there will be an error 
 - **AES Encryption and Decryption** added on Checking and Saving Account Number
 - **Input Validation**
-  - On Checking and Saving Account Number and Balace
+  - On Checking and Saving Account Balace
   - If a user inputs a string instead of a integer value, there is an error
 - **Output Encoding**
   - On Checking and Saving Account Name
   - When user inputs an Account Name, its encoded to keep the Account Name secure
 - **Generics Example**
   - 2 ArrayLists with Checkings and Savings account information have already been created
-  - The program iterates through these lists and prints out the transactions (deposting money, withdrawing money and charging a fee)
+  - The program iterates through these lists does the following:
+    - AES Encrypting on Account ID
+    - Output Encoding on Account Name
+    - Prints out the transactions:
+      - Deposting money
+      - Withdrawing money
+      - Charging a fee (Savings Account)
  
  Additional Features:
  - JavaDoc API
